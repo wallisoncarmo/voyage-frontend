@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{item?.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="backgroundCarbon">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-avatar item-start>
+          <img  [src]="getImage(item?.id)">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <hr/>
+  <ion-card>
+    <ion-card-header>
+      Informações adicionais
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col col-2>
+            <ion-avatar item-start>
+              <ion-icon name="color-palette" color="secondary"></ion-icon>
+            </ion-avatar>
+          </ion-col>
+          <ion-col col-10>
+            <b>Categoria:</b>
+            <p>{{item?.category.name}}</p>
+          </ion-col>
+          <ion-col col-2>
+            <ion-avatar item-start>
+              <ion-icon name="ios-image" color="purple"></ion-icon>
+            </ion-avatar>
+          </ion-col>
+          <ion-col col-10>
+            <b>Descrição sobre:</b>
+            <p>{{item?.description}}</p>
+          </ion-col>
+          
+          <ion-col col-12>
+            <hr/>
+          </ion-col>      
+          
+          <ion-col col-2 (click)="showMap()">
+            <ion-avatar item-start>
+              <ion-icon name="map" color="warning"></ion-icon>
+            </ion-avatar>
+          </ion-col>
+          <ion-col col-10 (click)="showMap()">
+            <b>Localização</b>
+            <p>Clique aqui para exibir no mapa</p>
+          </ion-col>          
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button color="purple" (click)="showEdit()" ion-fab secondary>
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+</ion-content>

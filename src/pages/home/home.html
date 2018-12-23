@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Principal</ion-title>
+       <ion-buttons end>
+          <button ion-button icon-only (click)="doCheckbox()">
+            <ion-icon name="funnel"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="backgroundCarbon">
+  
+  <ion-searchbar [(ngModel)]="search" (keyup)="updateList($event)" placeholder="Buscar pelo título"></ion-searchbar>
+  
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item (click)="showDetail(item)">
+        <ion-avatar item-start>
+          <img  [src]="getImage(item.id)">
+        </ion-avatar>
+        <h2>{{item.title}}</h2>
+        <p>{{item.category.name}}</p>
+      </ion-item>
+
+      
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="showDetail(item)">
+          <ion-icon name="clipboard"></ion-icon>
+          Detalhe
+        </button>
+        <button ion-button color="primary" (click)="showEdit(item)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="left">
+          <button ion-button color="danger" (click)="confirmDelete(item)">
+            <ion-icon name="trash"></ion-icon>
+            Deletar
+          </button>          
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+
+  <ion-fab bottom right>
+    <button (click)="showPhotograph()" ion-fab color="purple" >
+      <ion-icon name="ios-camera"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
